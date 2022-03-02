@@ -3,12 +3,17 @@
 // import aboutPage, { aboutTeam, aboutServices } from "./views/about-page.cmp.js";
 // import carDetails from "./views/car-details.cmp.js";
 // import carEdit from "./views/car-edit.cmp.js";
+import noteApp from "./apps/keep/pages/note-app.js";
 import homePage from "./pages/app-home.cmp.js";
 
 const routes = [
     {
         path: "/",
         component: homePage,
+    },
+    {
+        path: "/note",
+        component: noteApp,
     },
     //   {
     //     path: "/about",
