@@ -1,0 +1,15 @@
+body {
+    background-color: floralwhite;
+    margin: 0;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    color: aliceblue;
+    background-color: #2962ff;
+}
+.nav-bar{
+    background-color: aqua;
+}
