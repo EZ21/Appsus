@@ -3,7 +3,7 @@
 // import aboutPage, { aboutTeam, aboutServices } from "./views/about-page.cmp.js";
 // import carDetails from "./views/car-details.cmp.js";
 // import carEdit from "./views/car-edit.cmp.js";
-import homePage from "./pages/app-home.cmp";
+import homePage from "./pages/app-home.cmp.js";
 
 const routes = [
   {
