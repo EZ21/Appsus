@@ -10,6 +10,7 @@ header {
     color: aliceblue;
     background-color: #2962ff;
 }
-.nav-bar{
-    background-color: aqua;
+.nav-bar > a {
+    /* background-color: aqua; */
+    color: aliceblue;
 }
