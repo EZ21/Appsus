@@ -5,9 +5,10 @@ export default {
             <nav class="nav-bar">
                 <router-link to="/#">Home</router-link>
                 <router-link to="/#">Mail</router-link>
+                <router-link to="/note">Note</router-link>
                 <router-link to="/#">Keep</router-link><!-- notes -->
                 <router-link to="/#">Book</router-link>
             </nav>
         </header>
-    `
-}
+    `,
+};
