@@ -1,13 +1,13 @@
-import { router } from './router.js';
-import appHeader from './cmps/app-header.cmp.js';
-import appFooter from './cmps/app-footer.cmp.js';
-import userMsg from "./cmps/user-msg.cmp.js";
+import { router } from "./router.js";
+import appHeader from "./cmps/app-header.cmp.js";
+import appFooter from "./cmps/app-footer.cmp.js";
+// import userMsg from "./cmps/user-msg.cmp.js";
 
 const options = {
     template: `
     <section>
         <app-header/>
-        <user-msg/>
+        <!-- <user-msg/> -->
         <router-view/>
         <app-footer/>
     </section>
@@ -16,10 +16,10 @@ const options = {
     components: {
         appHeader,
         appFooter,
-        userMsg
-    }
+        // userMsg,
+    },
 };
 
 const app = Vue.createApp(options);
 app.use(router);
-app.mount('#app');
+app.mount("#app");

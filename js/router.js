@@ -6,39 +6,39 @@
 import homePage from "./pages/app-home.cmp.js";
 
 const routes = [
-  {
-    path: "/",
-    component: homePage,
-  },
-//   {
-//     path: "/about",
-//     component: aboutPage,
-//     children: [
-//       {
-//         path: "team",
-//         component: aboutTeam,
-//       },
-//       {
-//         path: "services",
-//         component: aboutServices,
-//       },
-//     ],
-//   },
-//   {
-//     path: "/car",
-//     component: carApp,
-//   },
-//   {
-//     path: "/car/:carId",
-//     component: carDetails,
-//   },
-//   {
-//     path: "/car/edit/:carId?",
-//     component: carEdit,
-//   },
+    {
+        path: "/",
+        component: homePage,
+    },
+    //   {
+    //     path: "/about",
+    //     component: aboutPage,
+    //     children: [
+    //       {
+    //         path: "team",
+    //         component: aboutTeam,
+    //       },
+    //       {
+    //         path: "services",
+    //         component: aboutServices,
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     path: "/car",
+    //     component: carApp,
+    //   },
+    //   {
+    //     path: "/car/:carId",
+    //     component: carDetails,
+    //   },
+    //   {
+    //     path: "/car/edit/:carId?",
+    //     component: carEdit,
+    //   },
 ];
 
 export const router = VueRouter.createRouter({
-  routes,
-  history: VueRouter.createWebHashHistory(),
+    routes,
+    history: VueRouter.createWebHashHistory(),
 });
