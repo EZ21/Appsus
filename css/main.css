@@ -1,0 +1,28 @@
+@import 'app/keep/note-preview.css';
+
+/* TEMP */
+body {
+    background-color: floralwhite;
+    margin: 0;
+}
+header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 60px;
+    color: aliceblue;
+    background-color: #2962ff;
+}
+.nav-bar > a {
+    /* background-color: aqua; */
+    color: aliceblue;
+}
+
+.app-main {
+    display: flex;
+    /* flex: auto; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
+}
