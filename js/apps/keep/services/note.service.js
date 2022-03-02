@@ -4,19 +4,31 @@ const STORAGE_KEY = "notesApp";
 
 const notes = [
     {
-        id: "n101",
+        id: "n110",
         type: "note-txt",
         isPinned: true,
-        info: { txt: "Fullstack Me Baby!" },
+        info: { txt: " 110 Fullstack Me Baby!" },
     },
     {
-        id: "n102",
+        id: "n111",
+        type: "note-txt",
+        isPinned: true,
+        info: { txt: "111 Fullstack Me Baby!" },
+    },
+    {
+        id: "n112",
+        type: "note-txt",
+        isPinned: true,
+        info: { txt: "112 Fullstack Me Baby!" },
+    },
+    {
+        id: "n120",
         type: "note-img",
         info: { url: "http://some-img/me", title: "Bobi and Me" },
         style: { backgroundColor: "#00d" },
     },
     {
-        id: "n103",
+        id: "n130",
         type: "note-todos",
         info: {
             label: "Get my stuff together",

@@ -19,6 +19,7 @@ export default {
     },
     computed: {
         notesToShow() {
+            console.log("this.notes", this.notes);
             return this.notes;
         },
     },
