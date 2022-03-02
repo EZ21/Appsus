@@ -4,7 +4,7 @@ body {
 }
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     height: 60px;
     color: aliceblue;
@@ -13,4 +13,13 @@ header {
 .nav-bar > a {
     /* background-color: aqua; */
     color: aliceblue;
+}
+
+.app-main {
+    display: flex;
+    /* flex: auto; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
 }
