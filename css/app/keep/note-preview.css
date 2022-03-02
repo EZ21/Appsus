@@ -1,0 +1,8 @@
+.note-preview {
+    background-color: lightcoral;
+    margin: 1vw;
+    padding: 3vw;
+}
+.note-list {
+    display: flex;
+}
