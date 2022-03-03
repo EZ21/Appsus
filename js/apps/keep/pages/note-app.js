@@ -4,9 +4,10 @@ import noteAdd from "../cmps/crud/note-add.cmp.js";
 
 export default {
     template: `
-        
+    <header>
+        <note-add :noteTypes="noteTypes"> </note-add>
+    </header>       
         <section class="note-app app-main">
-            <note-add> </note-add>
             <note-list :notes="notesToShow"></note-list> 
         </section>
     `,
@@ -18,14 +19,8 @@ export default {
     },
     data() {
         return {
-            noteTypes: {
-                txt: {
-                    fieldType: "text",
-                    icon: "📝",
-                    placeholder: "add Text Note ",
-                },
-            },
             notes: [],
+            noteTypes: noteService.noteTypes,
             filterBy: null,
         };
     },

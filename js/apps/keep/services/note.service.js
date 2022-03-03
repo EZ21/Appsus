@@ -1,7 +1,6 @@
 import { storageService } from "../../../services/storage.service.js";
 import { utilService } from "../../../services/util.service.js";
 
-
 const STORAGE_KEY = "notesApp";
 
 const notes = [
@@ -42,6 +41,18 @@ const notes = [
     },
 ];
 
+const noteTypes = {
+    txt: {
+        fieldType: "text",
+        icon: "📝",
+        placeholder: "add Text Note ",
+    },
+    img: {
+        fieldType: "text",
+        icon: "📝",
+        placeholder: "add Text Note ",
+    },
+};
 function saveNotes() {
     //storageService.postMany(STORAGE_KEY, notes);
     storageService.saveAll(STORAGE_KEY, notes);

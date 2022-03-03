@@ -8,6 +8,13 @@ export default {
    
     <input autocomplete="off" v-model="userData"
 	    @keyup.enter="addNote"/>
+        <div class="note-add-icons">
+            <!-- <template v-for="(noteType, idx) in noteTypes"> -->
+            <!-- <i :class="setSelectedType(idx, noteType.icon)"@click="updateSelectedType(idx)"></i> -->
+            <!-- </template> -->
+
+            
+        </div>
     
     </section>   
     `,
@@ -21,6 +28,15 @@ export default {
     methods: {
         addNote() {
             console.log("==== ADD NOTE: ", this.userData);
+        },
+        setSelectedType(noteType, noteIcon) {
+            return this.newNote.settings.noteType === noteType
+                ? noteIcon + " fa-lg selected"
+                : noteIcon + " fa-lg";
+        },
+        updateSelectedType(noteType) {
+            // this.newNote.settings.noteType = noteType;
+            // this.$refs.newNoteEl.focus();
         },
     },
 };
