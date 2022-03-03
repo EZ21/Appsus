@@ -1,7 +1,9 @@
 import { utilService } from '../../../services/util.service.js';
+import { storageService } from '../../../services/storage.service.js';
+
 
 const EMAIL_STORAGE_KEY = "emailDB";
-// const EMAIL_DRAFTS_STORAGE_KEY = "emailDraftsDB";
+const EMAIL_DRAFTS_STORAGE_KEY = "emailDraftsDB";
 
 const loggedinUser = {
   email: "user@appsus.com",
@@ -12,7 +14,8 @@ const email = {
   id: 'e101',
   subject: 'Miss you!',
   body: 'Would love to catch up sometimes',
-  isRead: false, sentAt : 1551133930594,
+  isRead: false,
+  sentAt: 1551133930594,
   to: 'momo@momo.com'
 };
 
@@ -20,15 +23,15 @@ export const emailService = {
   query,
   remove,
   save,
-//   getById,
-//   getEmailsByFolder,
-//   toggleReadEmail,
-//   setEmailAsRead,
-//   toggleMarkedWithStar,
-//   removeEmailDraft,
-//   saveEmailDraft,
-//   getEmailDraftById,
-//   noteToEmailEntity
+  //   getById,
+  getEmailsByFolder,
+  toggleReadEmail,
+  //   setEmailAsRead,
+  toggleStarIcon,
+  //   removeEmailDraft,
+  //   saveEmailDraft,
+  //   getEmailDraftById,
+  //   noteToEmailEntity
 };
 
 _createEmails();
@@ -94,12 +97,12 @@ function remove(emailId) {
   return storageService.remove(EMAIL_STORAGE_KEY, emailId);
 };
 
-function toggleReadEmail(email) {
+function toggleMarkReadEmail(email) {
   email.isRead = !email.isRead;
   return storageService.put(EMAIL_STORAGE_KEY, email);
 };
 
-function toggleMarkedWithStar(email) {
+function toggleStarIcon(email) {
   email.isStar = !email.isStar;
   return storageService.put(EMAIL_STORAGE_KEY, email);
 };
@@ -112,34 +115,34 @@ function setEmailAsRead(email) {
 function getEmailsByFolder(folder) {
   if (folder === "sent") {
     return query().then((emails) => {
-      return emails.filter((e) => e.to === loggedinUser.email && !e.removedAt);
+      return emails.filter((email) => email.to === loggedinUser.email && !email.removedAt);
     });
   } else if (folder === "inbox")
     return query().then((emails) =>
-      emails.filter((e) => e.to !== loggedinUser.email && !e.removedAt)
+      emails.filter((email) => email.to !== loggedinUser.email && !email.removedAt)
     );
   else if (folder === "star")
     return query().then((emails) =>
-      emails.filter((e) => e.isStar && !e.removedAt)
+      emails.filter((email) => email.isStar && !email.removedAt)
     );
   else if (folder === "trash")
-    return query().then((emails) => emails.filter((e) => e.removedAt));
-  else if (folder === "draft") return storageService.query(DRAFTS_KEY);
+    return query().then((emails) => emails.filter((email) => email.removedAt));
+  else if (folder === "draft") return storageService.query(emailDraftsDB);
 };
 
 // EMAIL DRAFTS:
 function getEmailDraftById(draftId) {
-  return storageService.get(DRAFTS_KEY, draftId);
+  return storageService.get(emailDraftsDB, draftId);
 };
 
 function removeEmailDraft(draftId) {
-  return storageService.remove(DRAFTS_KEY, draftId);
+  return storageService.remove(emailDraftsDB, draftId);
 };
 
 function saveEmailDraft(draft) {
-  if (draft.id) return storageService.put(DRAFTS_KEY, draft);
+  if (draft.id) return storageService.put(emailDraftsDB, draft);
   else {
     draft.isDraft = true;
-    return storageService.post(DRAFTS_KEY, draft);
+    return storageService.post(emailDraftsDB, draft);
   }
 };
