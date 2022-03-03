@@ -57,10 +57,10 @@ export const emailService = {
   toggleMarkReadEmail,
   setEmailAsRead,
   toggleStarIcon,
-  removeEmailDraft,
-  saveEmailDraft,
-  getEmailDraftById,
-  noteToEmailEntity,
+  // removeEmailDraft,
+  // saveEmailDraft,
+  // getEmailDraftById,
+  // noteToEmailEntity,
 };
 
 _createEmails();
