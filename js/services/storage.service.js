@@ -6,11 +6,28 @@ export const storageService = {
     put,
     remove,
     postMany,
+    saveAll,
 };
+
+// refer to query(entityType)
+// function loadFromStorage(key) {
+//     let data = localStorage.getItem(key);
+//     return data ? JSON.parse(data) : undefined;
+// }
 
 function query(entityType) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || [];
     return Promise.resolve(entities);
+}
+
+// refer to saveAll
+// function saveToStorage(key, value) {
+//     localStorage.setItem(key, JSON.stringify(value) || null);
+// }
+
+function saveAll(entityType, newEntities) {
+    _save(entityType, newEntities);
+    return Promise.resolve(newEntities);
 }
 
 function get(entityType, entityId) {
