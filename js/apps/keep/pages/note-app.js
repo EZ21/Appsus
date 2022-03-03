@@ -6,14 +6,15 @@ export default {
     template: `
         
         <section class="note-app app-main">
+            <!-- <note-add> </note-add> -->
             <note-list :notes="notesToShow"></note-list> 
         </section>
-        `,
-// <note-add class="note-add-bar" :noteTypes="noteTypes"></note-add>
+    `,
 
     components: {
         noteList,
         // noteAdd,
+        // noteFilter,
     },
     data() {
         return {
@@ -42,7 +43,11 @@ export default {
         notesToShow() {
             if (!this.filterBy) return this.notes;
             const regex = new RegExp(this.filterBy.title, "i");
-            return this.notes.filter((book) => regex.test(note.title));
+            return this.notes.filter(
+                (book) => regex.test(note.title)
+                // &&
+                // this.filterBy.price > book.listPrice.amount
+            );
         },
     },
 };
