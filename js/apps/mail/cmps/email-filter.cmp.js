@@ -17,6 +17,8 @@ export default {
     },
 
     methods: {
-        setSearchBarFilter()
+        setSearchBarFilter() {
+
+        }
     }
 }

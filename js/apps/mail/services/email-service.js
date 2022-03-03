@@ -25,7 +25,7 @@ export const emailService = {
   save,
   //   getById,
   getEmailsByFolder,
-  toggleReadEmail,
+  // toggleReadEmail,
   toggleStarIcon,
 
 };
