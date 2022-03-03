@@ -25,6 +25,8 @@ function query(entityType) {
 //     localStorage.setItem(key, JSON.stringify(value) || null);
 // }
 
+
+
 function saveAll(entityType, newEntities) {
     _save(entityType, newEntities);
     return Promise.resolve(newEntities);
