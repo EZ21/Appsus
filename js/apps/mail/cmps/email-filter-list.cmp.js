@@ -9,11 +9,11 @@ export default {
 
   methods: {
     filter() {
-        this.$emit('filtered', { ...this.filterBy});
+      this.$emit('filtered', { ...this.filterBy});
     },
 
     sort() {
-        this.$emit('sorted', this.sort);
+      this.$emit('sorted', this.sort);
     }
 
 

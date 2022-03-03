@@ -15,7 +15,7 @@ export default {
 
                 <!-- :email is v-bind:email -->
                 <!-- @click is v-on:click -->
-                    <email-filter @filter="setFilter" @sort="sortEmails" @toggle="toggleDisplay"/>
+                    <email-filter @filtered="setFilter" @sorted="sortEmails" @toggle="toggleDisplay"/>
                     <email-list :emails="emailsForDisplay" @selected="selectEmail" @star="toggleMarkedWithStar" @toggle="toggleEmailRead" @delete="deleteEmail"/>
                 </div>
 
