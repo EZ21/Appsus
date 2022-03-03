@@ -42,16 +42,20 @@ export default {
             this.filterBy = filterBy;
         },
         addNote({ note, data }) {
-            console.log("methods: addNote(note, data)", note, "\n data", data);
+            // console.log("methods: addNote(note, data)", note, "\n data", data,"\n notes",this.notes);
             noteService.saveNote(note, data);
+            
         },
     },
 
     created() {
         noteService.query().then((notes) => (this.notes = notes));
-        eventBus.on("evNoteAdd", ({ note, data }) => this.addNote({ note, data }));
-        
-        // eventBus.on("evNoteAdd", busTest(note, data));
+        // even bus emits
+        // eventBus.emit('appChange',notes)
+        //event bus listeners 
+        eventBus.on("evNoteAdd", ({ note, data }) =>
+            this.addNote({ note, data })
+        );
     },
     computed: {
         notesToShow() {
@@ -67,6 +71,3 @@ export default {
 };
 
 
-function busTest(note, data) {
-    this.addNote(note, data);
-}
