@@ -1,19 +1,19 @@
 import noteService from "../services/note.service.js";
 import noteList from "../cmps/note-list.cmp.js";
-// import noteAdd from "../cmps/crud/note-add.cmp.js";
+import noteAdd from "../cmps/crud/note-add.cmp.js";
 
 export default {
     template: `
         
         <section class="note-app app-main">
-            <!-- <note-add> </note-add> -->
+            <note-add> </note-add>
             <note-list :notes="notesToShow"></note-list> 
         </section>
     `,
 
     components: {
         noteList,
-        // noteAdd,
+        noteAdd,
         // noteFilter,
     },
     data() {

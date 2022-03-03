@@ -1,5 +1,5 @@
-import notesService from "../services/note.service.js";
-import eventBus from "../services/eventBus-service.js";
+import notesService from "../../services/note.service.js";
+// import ;
 
 export default {
     props: ["noteTypes"],

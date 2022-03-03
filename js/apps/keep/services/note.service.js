@@ -1,4 +1,6 @@
 import { storageService } from "../../../services/storage.service.js";
+import { utilService } from "../../../services/util.service.js";
+
 
 const STORAGE_KEY = "notesApp";
 
@@ -83,7 +85,7 @@ function saveNote(note, data) {
         notes.splice(noteIdx, 1, note);
     } else {
         // Add new note
-        note.id = utilsService.makeId();
+        note.id = utilService.makeId();
         notes.unshift(note);
     }
 
@@ -93,7 +95,7 @@ function saveNote(note, data) {
 
 function emptyNote() {
     return {
-        id: utilsService.makeId(),
+        id: utilService.makeId(),
         type: "note-txt",
         isPinned: false,
         info: { txt: " 110 Fullstack Me Baby!" },
