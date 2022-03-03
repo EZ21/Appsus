@@ -80,14 +80,14 @@ function saveNote(note, data) {
     }
 
     // Save data
-    if (note.id) {
+    if (note.id !== "StartID") {
         // Update existing note
         let noteIdx = notes.findIndex((currNote) => currNote.id === note.id);
         notes.splice(noteIdx, 1, note);
     } else {
         // Add new note
-        // note.id = utilService.makeId();
-        // notes.unshift(note);
+        note.id = utilService.makeId();
+        notes.unshift(note);
     }
 
     saveNotes();
@@ -96,7 +96,7 @@ function saveNote(note, data) {
 
 function emptyNote() {
     return {
-        id: "01",
+        id: "StartID",
         type: "txt",
         isPinned: false,
         info: { txt: "starter note" },
