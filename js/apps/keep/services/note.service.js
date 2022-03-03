@@ -41,7 +41,7 @@ const notes = [
 ];
 
 function saveNotes() {
-    storageService.postMany(STORAGE_KEY, notes);
+    // storageService.postMany(STORAGE_KEY, notes);
 }
 
 function query() {
