@@ -20,7 +20,7 @@ function query(entityType) {
     return Promise.resolve(entities);
 }
 
-// refoe to saveAll
+// refer to saveAll
 // function saveToStorage(key, value) {
 //     localStorage.setItem(key, JSON.stringify(value) || null);
 // }
