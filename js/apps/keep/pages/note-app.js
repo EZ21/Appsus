@@ -1,6 +1,7 @@
 import noteService from "../services/note.service.js";
 import noteList from "../cmps/note-list.cmp.js";
 import noteAdd from "../cmps/crud/note-add.cmp.js";
+import { eventBus } from "../../../services/eventBus-service.js";
 
 export default {
     template: `
@@ -15,6 +16,7 @@ export default {
     components: {
         noteList,
         noteAdd,
+        noteService,
         // noteFilter,
     },
     data() {
@@ -39,11 +41,17 @@ export default {
         setFilter(filterBy) {
             this.filterBy = filterBy;
         },
+        addNote(note, data) {
+            console.log("methods: addNote(note, data)", note, "\n data", data);
+            noteService.saveNote(note, data);
+        },
     },
 
     created() {
-        noteService.saveNotes();
         noteService.query().then((notes) => (this.notes = notes));
+        eventBus.on("evNoteAdd", (note, data) => this.addNote(note, data));
+        
+        // eventBus.on("evNoteAdd", busTest(note, data));
     },
     computed: {
         notesToShow() {
@@ -57,3 +65,8 @@ export default {
         },
     },
 };
+
+
+function busTest(note, data) {
+    this.addNote(note, data);
+}

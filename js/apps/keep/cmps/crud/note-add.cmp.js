@@ -1,6 +1,5 @@
 import notesService from "../../services/note.service.js";
-import {eventBus} from "../../../../services/eventBus-service.js";
-
+import { eventBus } from "../../../../services/eventBus-service.js";
 
 export default {
     props: ["noteTypes"],
@@ -37,46 +36,29 @@ export default {
     computed: {},
     methods: {
         addNote() {
-            console.log("==== ADD NOTE: ", this.userData);
+            console.log(
+                "1==== ADD NOTE: newNote",
+                this.newNote,
+                "\n || userData:",
+                this.userData
+            );
             // eventBus.$emit('evNoteAdd', this.userData)
-            eventBus.emit("evNoteAdd", this.userData);
+            eventBus.emit("evNoteAdd", this.newNote, this.userData);
+            // eventBus.emit("evNoteAdd", newNote, userData);
+
+            // eventBus.emit("evNoteAdd", this.userData);
             this.newNote = notesService.emptyNote();
             this.userData = "";
         },
         setSelectedType(noteType, noteIcon) {
-            console.log(
-                "setSelectedType(noteType, noteIcon)",
-                noteType,
-                "||||",
-                noteIcon
-            );
+            // console.log(
+            //     "setSelectedType(noteType, noteIcon)",
+            //     noteType,
+            //     "||||",
+            //     noteIcon
+            // );
             return this.newNote.type === noteType ? noteIcon : noteIcon;
         },
         updateSelectedType(noteType) {},
     },
 };
-
-// export default {
-//     // props: ["noteTypes"],
-//     template: `
-//     <section class="note-add">
-//     <input :type="fieldType" autocomplete="off" v-model="userData"
-// 	    :placeholder="placeholder" @keyup.enter="addNote" ref="newNoteEl" />
-
-//     </section>
-//     `,
-//     data() {
-//         return {
-//             newNote: notesService.emptyNote(),
-//             userData: "",
-//         };
-//     },
-//     computed: {},
-//     methods: {
-//         addNote() {
-//             eventBus.emit(EVENT_NOTE_ADDED, this.newNote, this.userData);
-//             this.newNote = notesService.emptyNote();
-//             this.userData = "";
-//         },
-//     },
-// };

@@ -6,25 +6,25 @@ const STORAGE_KEY = "notesApp";
 const notes = [
     {
         id: "n110",
-        type: "note-txt",
+        type: "txt",
         isPinned: true,
         info: { txt: " 110 Fullstack Me Baby!" },
     },
     {
         id: "n111",
-        type: "note-txt",
+        type: "txt",
         isPinned: true,
         info: { txt: "111 Fullstack Me Baby!" },
     },
     {
         id: "n112",
-        type: "note-txt",
+        type: "txt",
         isPinned: true,
         info: { txt: "112 Fullstack Me Baby!" },
     },
     {
         id: "n120",
-        type: "note-img",
+        type: "img",
         info: { url: "http://some-img/me", title: "Bobi and Me" },
         style: { backgroundColor: "#00d" },
     },
@@ -56,11 +56,13 @@ function getNoteById(id) {
 }
 
 function saveNote(note, data) {
+    // console.log("saveNote(note, data)", note, "|||", data);
     if (!note) Promise.reject();
+    // console.log("2saveNote note.type", note.type);
 
-    switch (note.settings.noteType) {
-        case "text":
-            note.data.text = data;
+    switch (note.type) {
+        case "txt":
+            note.info.txt = data;
             break;
         case "image":
         case "video":
@@ -84,8 +86,8 @@ function saveNote(note, data) {
         notes.splice(noteIdx, 1, note);
     } else {
         // Add new note
-        note.id = utilService.makeId();
-        notes.unshift(note);
+        // note.id = utilService.makeId();
+        // notes.unshift(note);
     }
 
     saveNotes();
@@ -94,10 +96,10 @@ function saveNote(note, data) {
 
 function emptyNote() {
     return {
-        id: utilService.makeId(),
+        id: "01",
         type: "txt",
         isPinned: false,
-        info: { txt: " 110 Fullstack Me Baby!" },
+        info: { txt: "starter note" },
         style: { backgroundColor: "" },
         data: {},
     };
