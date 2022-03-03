@@ -26,12 +26,8 @@ export const emailService = {
   //   getById,
   getEmailsByFolder,
   toggleReadEmail,
-  //   setEmailAsRead,
   toggleStarIcon,
-  //   removeEmailDraft,
-  //   saveEmailDraft,
-  //   getEmailDraftById,
-  //   noteToEmailEntity
+
 };
 
 _createEmails();
@@ -59,58 +55,22 @@ function save(email) {
   else return storageService.post(EMAIL_STORAGE_KEY, email);
 };
 
-function addEmail(email) {
-  const formatEmail = {
-    id: utilService.makeId(),
-    subject: email.subject,
-    body: email.body,
-    isRead: false,
-    isStar: false,
-    sentAt: Date.now(),
-    to: "user@appsus.com",
-  };
-  if (email.imageUrl) {
-    formatEmail.imageUrl = email.imageUrl;
-  }
-  return storageService.post(EMAIL_STORAGE_KEY, formatEmail);
-};
 
-function noteToEmailEntity(note) {
-  const noteEmail = {
-    subject: null,
-    body: null,
-    isRead: false,
-    isStar: false,
-    sentAt: Date.now(),
-    to: "user@appsus.com",
-  };
-  if (note.body.includes("http")) {
-    noteEmail.imageUrl = note.body;
-  } else {
-    noteEmail.body = note.body;
-  }
-  noteEmail.subject = note.subject;
-  return Promise.resolve(noteEmail);
-};
+
+
 
 function remove(emailId) {
   return storageService.remove(EMAIL_STORAGE_KEY, emailId);
 };
 
-function toggleMarkReadEmail(email) {
-  email.isRead = !email.isRead;
-  return storageService.put(EMAIL_STORAGE_KEY, email);
-};
+
 
 function toggleStarIcon(email) {
   email.isStar = !email.isStar;
   return storageService.put(EMAIL_STORAGE_KEY, email);
 };
 
-function setEmailAsRead(email) {
-  email.isRead = true;
-  return storageService.put(EMAIL_STORAGE_KEY, email);
-};
+
 
 function getEmailsByFolder(folder) {
   if (folder === "sent") {
@@ -128,21 +88,4 @@ function getEmailsByFolder(folder) {
   else if (folder === "trash")
     return query().then((emails) => emails.filter((email) => email.removedAt));
   else if (folder === "draft") return storageService.query(emailDraftsDB);
-};
-
-// EMAIL DRAFTS:
-function getEmailDraftById(draftId) {
-  return storageService.get(emailDraftsDB, draftId);
-};
-
-function removeEmailDraft(draftId) {
-  return storageService.remove(emailDraftsDB, draftId);
-};
-
-function saveEmailDraft(draft) {
-  if (draft.id) return storageService.put(emailDraftsDB, draft);
-  else {
-    draft.isDraft = true;
-    return storageService.post(emailDraftsDB, draft);
-  }
 };

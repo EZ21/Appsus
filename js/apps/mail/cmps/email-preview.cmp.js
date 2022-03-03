@@ -35,11 +35,6 @@ export default {
       return this.email.isRead ? "unRead" : "Read";
     },
 
-    // getQueryString() {
-    //   let qString;
-    //   const { subject, to, sentAt, body } = this.email;
-    //   qString = `?subject=${subject}&body=${body}&to=${to}&sentAt=${sentAt}`;
-    //   return qString;
-    // },
+
   },
 };
