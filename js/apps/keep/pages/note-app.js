@@ -16,6 +16,9 @@ export default {
     },
     data() {
         return {
+            noteTypes: {
+                txt: { fieldType: "text", icon: "📝", placeholder:"add Text Note "},
+            },
             notes: [],
             filterBy: null,
         };
