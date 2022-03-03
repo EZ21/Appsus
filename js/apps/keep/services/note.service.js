@@ -95,7 +95,7 @@ function saveNote(note, data) {
 function emptyNote() {
     return {
         id: utilService.makeId(),
-        type: "note-txt",
+        type: "txt",
         isPinned: false,
         info: { txt: " 110 Fullstack Me Baby!" },
         style: { backgroundColor: "" },

@@ -1,18 +1,19 @@
 import notesService from "../../services/note.service.js";
-// import ;
+import {eventBus} from "../../../../services/eventBus-service.js";
+
 
 export default {
     props: ["noteTypes"],
     template: `
     
     <input autocomplete="off" v-model="userData"
-	    @keyup.enter="addNote"/>
+	    @keyup.enter="addNote" ref="newNoteEl"/>
 
         <div class="note-add-icons">
             <template v-for="(noteType, idx) in noteTypes">
             <!-- <i setSelectedType(noteType, noteType.icon) @click="updateSelectedType(idx)" ></i> -->
             
-        <p>{{setSelectedType(noteType, noteType.icon)}}</p>    
+        <p >{{setSelectedType(noteType, noteType.icon)}}</p>    
         </template>
 
             
@@ -37,6 +38,10 @@ export default {
     methods: {
         addNote() {
             console.log("==== ADD NOTE: ", this.userData);
+            // eventBus.$emit('evNoteAdd', this.userData)
+            eventBus.emit("evNoteAdd", this.userData);
+            this.newNote = notesService.emptyNote();
+            this.userData = "";
         },
         setSelectedType(noteType, noteIcon) {
             console.log(
