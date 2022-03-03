@@ -4,22 +4,23 @@ import notesService from "../../services/note.service.js";
 export default {
     props: ["noteTypes"],
     template: `
-    <section class="note-add-bar">
-   
+    
     <input autocomplete="off" v-model="userData"
 	    @keyup.enter="addNote"/>
 
         <div class="note-add-icons">
             <template v-for="(noteType, idx) in noteTypes">
-            <!-- <i :class="setSelectedType(idx, noteType.icon)"@click="updateSelectedType(idx)"></i> -->
-        <p>{{noteType.icon}}</p>    
+            <!-- <i setSelectedType(noteType, noteType.icon) @click="updateSelectedType(idx)" ></i> -->
+            
+        <p>{{setSelectedType(noteType, noteType.icon)}}</p>    
         </template>
 
             
         </div>
     
-    </section>   
+     
     `,
+    //@click="updateSelectedType(idx)"
     data() {
         return {
             newNote: notesService.emptyNote(),
@@ -37,15 +38,16 @@ export default {
         addNote() {
             console.log("==== ADD NOTE: ", this.userData);
         },
-        // setSelectedType(noteType, noteIcon) {
-        //     return this.newNote.settings.noteType === noteType
-        //         ? noteIcon + " fa-lg selected"
-        //         : noteIcon + " fa-lg";
-        // },
-        // updateSelectedType(noteType) {
-        // this.newNote.settings.noteType = noteType;
-        // this.$refs.newNoteEl.focus();
-        // },
+        setSelectedType(noteType, noteIcon) {
+            console.log(
+                "setSelectedType(noteType, noteIcon)",
+                noteType,
+                "||||",
+                noteIcon
+            );
+            return this.newNote.type === noteType ? noteIcon : noteIcon;
+        },
+        updateSelectedType(noteType) {},
     },
 };
 
