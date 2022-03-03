@@ -41,18 +41,18 @@ const notes = [
     },
 ];
 
-const noteTypes = {
-    txt: {
-        fieldType: "text",
-        icon: "📝",
-        placeholder: "add Text Note ",
-    },
-    img: {
-        fieldType: "text",
-        icon: "📝",
-        placeholder: "add Text Note ",
-    },
-};
+// const noteTypes = {
+//     txt: {
+//         fieldType: "text",
+//         icon: "📝",
+//         placeholder: "add Text Note ",
+//     },
+//     img: {
+//         fieldType: "text",
+//         icon: "📝",
+//         placeholder: "add Text Note ",
+//     },
+// };
 function saveNotes() {
     //storageService.postMany(STORAGE_KEY, notes);
     storageService.saveAll(STORAGE_KEY, notes);

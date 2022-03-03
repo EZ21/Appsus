@@ -4,14 +4,16 @@ import notesService from "../../services/note.service.js";
 export default {
     props: ["noteTypes"],
     template: `
-    <section class="note-add">
+    <section class="note-add-bar">
    
     <input autocomplete="off" v-model="userData"
 	    @keyup.enter="addNote"/>
+
         <div class="note-add-icons">
-            <!-- <template v-for="(noteType, idx) in noteTypes"> -->
+            <template v-for="(noteType, idx) in noteTypes">
             <!-- <i :class="setSelectedType(idx, noteType.icon)"@click="updateSelectedType(idx)"></i> -->
-            <!-- </template> -->
+        <p>{{noteType.icon}}</p>    
+        </template>
 
             
         </div>
@@ -24,20 +26,26 @@ export default {
             userData: "",
         };
     },
+    // created() {
+    //     const noteTypesCon = this.noteTypes
+
+    //         console.log("noteTypes", noteTypesCon);
+
+    // },
     computed: {},
     methods: {
         addNote() {
             console.log("==== ADD NOTE: ", this.userData);
         },
-        setSelectedType(noteType, noteIcon) {
-            return this.newNote.settings.noteType === noteType
-                ? noteIcon + " fa-lg selected"
-                : noteIcon + " fa-lg";
-        },
-        updateSelectedType(noteType) {
-            // this.newNote.settings.noteType = noteType;
-            // this.$refs.newNoteEl.focus();
-        },
+        // setSelectedType(noteType, noteIcon) {
+        //     return this.newNote.settings.noteType === noteType
+        //         ? noteIcon + " fa-lg selected"
+        //         : noteIcon + " fa-lg";
+        // },
+        // updateSelectedType(noteType) {
+        // this.newNote.settings.noteType = noteType;
+        // this.$refs.newNoteEl.focus();
+        // },
     },
 };
 

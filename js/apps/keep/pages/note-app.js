@@ -20,7 +20,18 @@ export default {
     data() {
         return {
             notes: [],
-            noteTypes: noteService.noteTypes,
+            noteTypes: {
+                txt: {
+                    fieldType: "text",
+                    icon: "📝",
+                    placeholder: "add Text Note ",
+                },
+                img: {
+                    fieldType: "text",
+                    icon: "📝",
+                    placeholder: "add Text Note ",
+                },
+            },
             filterBy: null,
         };
     },
