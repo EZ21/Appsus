@@ -1,23 +1,28 @@
 import noteService from "../services/note.service.js";
 import noteList from "../cmps/note-list.cmp.js";
+// import noteAdd from "../cmps/crud/note-add.cmp.js";
 
 export default {
     template: `
         
         <section class="note-app app-main">
-        
             <note-list :notes="notesToShow"></note-list> 
         </section>
-    `,
+        `,
+// <note-add class="note-add-bar" :noteTypes="noteTypes"></note-add>
 
     components: {
         noteList,
-        // noteFilter,
+        // noteAdd,
     },
     data() {
         return {
             noteTypes: {
-                txt: { fieldType: "text", icon: "📝", placeholder:"add Text Note "},
+                txt: {
+                    fieldType: "text",
+                    icon: "📝",
+                    placeholder: "add Text Note ",
+                },
             },
             notes: [],
             filterBy: null,
@@ -37,11 +42,7 @@ export default {
         notesToShow() {
             if (!this.filterBy) return this.notes;
             const regex = new RegExp(this.filterBy.title, "i");
-            return this.notes.filter(
-                (book) => regex.test(note.title)
-                // &&
-                // this.filterBy.price > book.listPrice.amount
-            );
+            return this.notes.filter((book) => regex.test(note.title));
         },
     },
 };
