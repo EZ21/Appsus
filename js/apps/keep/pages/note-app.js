@@ -41,7 +41,7 @@ export default {
         setFilter(filterBy) {
             this.filterBy = filterBy;
         },
-        addNote(note, data) {
+        addNote({ note, data }) {
             console.log("methods: addNote(note, data)", note, "\n data", data);
             noteService.saveNote(note, data);
         },
@@ -49,7 +49,7 @@ export default {
 
     created() {
         noteService.query().then((notes) => (this.notes = notes));
-        eventBus.on("evNoteAdd", (note, data) => this.addNote(note, data));
+        eventBus.on("evNoteAdd", ({ note, data }) => this.addNote({ note, data }));
         
         // eventBus.on("evNoteAdd", busTest(note, data));
     },

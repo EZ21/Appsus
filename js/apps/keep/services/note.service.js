@@ -56,7 +56,7 @@ function getNoteById(id) {
 }
 
 function saveNote(note, data) {
-    // console.log("saveNote(note, data)", note, "|||", data);
+    console.log("saveNote(note, data)", note, "|||", data);
     if (!note) Promise.reject();
     // console.log("2saveNote note.type", note.type);
 

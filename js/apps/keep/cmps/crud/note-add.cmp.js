@@ -6,7 +6,7 @@ export default {
     template: `
     
     <input autocomplete="off" v-model="userData"
-	    @keyup.enter="addNote" ref="newNoteEl"/>
+	    @keyup.enter="addNote( this.newNote, this.userData)" ref="newNoteEl"/>
 
         <div class="note-add-icons">
             <template v-for="(noteType, idx) in noteTypes">
@@ -35,16 +35,16 @@ export default {
     // },
     computed: {},
     methods: {
-        addNote() {
+        addNote(newNote, userData) {
             console.log(
                 "1==== ADD NOTE: newNote",
-                this.newNote,
+                newNote,
                 "\n || userData:",
-                this.userData
+                userData
             );
             // eventBus.$emit('evNoteAdd', this.userData)
-            eventBus.emit("evNoteAdd", this.newNote, this.userData);
-            // eventBus.emit("evNoteAdd", newNote, userData);
+            // eventBus.emit("evNoteAdd", this.newNote, this.userData);
+            eventBus.emit("evNoteAdd", { note:newNote, data:userData });
 
             // eventBus.emit("evNoteAdd", this.userData);
             this.newNote = notesService.emptyNote();
