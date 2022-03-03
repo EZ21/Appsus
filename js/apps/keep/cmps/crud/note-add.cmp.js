@@ -1,4 +1,6 @@
 import notesService from "../services/note.service.js";
+import eventBus from "../services/eventBus-service.js";
+
 export default {
     props: ["noteTypes"],
     template: `
@@ -10,14 +12,16 @@ export default {
     `,
     data() {
         return {
-            
-            
-        }
+            newNote: notesService.emptyNote(),
+            userData: "",
+        };
     },
-    computed: {
-        
-    },
+    computed: {},
     methods: {
-        
-    }
+        addNote() {
+            eventBus.emit(EVENT_NOTE_ADDED, this.newNote, this.userData);
+            this.newNote = notesService.emptyNote();
+            this.userData = "";
+        },
+    },
 };
