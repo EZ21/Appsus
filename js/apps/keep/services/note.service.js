@@ -90,8 +90,20 @@ function saveNote(note, data) {
     return Promise.resolve(note);
 }
 
+function emptyNote() {
+    return {
+        id: "n110",
+        type: "note-txt",
+        isPinned: true,
+        info: { txt: " 110 Fullstack Me Baby!" },
+        style: { backgroundColor: "#00d" }
+        ,
+        data: {},
+    };
+}
+
 export default {
-    // emptyNote,
+    emptyNote,
     query,
     getNoteById,
     saveNote,
