@@ -53,16 +53,20 @@ export default {
             noteService.saveNote(note, data);
             this.loadNotes();
         },
+        removeNote(noteId) {
+            notesService.removeNote(noteId);
+        },
     },
 
     created() {
         // event bus emits
-        
+
         //event bus listeners
         eventBus.on("evNoteAdd", ({ note, data }) =>
-        this.addNote({ note, data })
+            this.addNote({ note, data })
         );
-        this.loadNotes(); 
+        eventBus.on("removeNote", (noteId) => this.removeNote(noteId));
+        this.loadNotes();
     },
     computed: {
         notesToShow() {

@@ -42,7 +42,8 @@ const notes = [
 ];
 
 function saveNotes() {
-    //storageService.postMany(STORAGE_KEY, notes);
+    // storageService.postMany(STORAGE_KEY, notes);
+    console.log("saveNotes", STORAGE_KEY, notes);
     storageService.saveAll(STORAGE_KEY, notes);
 }
 
@@ -105,6 +106,14 @@ function emptyNote() {
         data: {},
     };
 }
+function removeNote(id) {
+    return new Promise((resolve, reject) => {
+        let noteIdx = notes.findIndex((note) => note.id === id);
+        notes.splice(noteIdx, 1);
+        saveNotes();
+        resolve();
+    });
+}
 
 export default {
     emptyNote,
@@ -112,4 +121,5 @@ export default {
     getNoteById,
     saveNote,
     saveNotes,
+    removeNote,
 };
