@@ -56,16 +56,13 @@ export default {
     },
 
     created() {
-        storageService.query("notesApp").then((notes) => (this.notes = notes));
-        console.log("noteService.query()", noteService.query());
-        console.log("storageService.query()", storageService.query("notesApp"));
-
-        // even bus emits
-       
-               //event bus listeners
+        // event bus emits
+        
+        //event bus listeners
         eventBus.on("evNoteAdd", ({ note, data }) =>
-            this.addNote({ note, data })
+        this.addNote({ note, data })
         );
+        this.loadNotes(); 
     },
     computed: {
         notesToShow() {
