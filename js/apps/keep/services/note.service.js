@@ -62,6 +62,7 @@ function saveNote(note, data) {
 
     switch (note.type) {
         case "txt":
+            console.log("switch (note.type) =  txt");
             note.info.txt = data;
             break;
         case "image":
@@ -76,7 +77,7 @@ function saveNote(note, data) {
             });
             break;
 
-        // 	return Promise.reject();
+        // return Promise.reject();
     }
 
     // Save data

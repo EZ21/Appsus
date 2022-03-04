@@ -1,6 +1,8 @@
 import noteService from "../services/note.service.js";
 import noteList from "../cmps/note-list.cmp.js";
 import noteAdd from "../cmps/crud/note-add.cmp.js";
+import { storageService } from "../../../services/storage.service.js";
+
 import { eventBus } from "../../../services/eventBus-service.js";
 
 export default {
@@ -37,22 +39,30 @@ export default {
             filterBy: null,
         };
     },
+
     methods: {
         setFilter(filterBy) {
             this.filterBy = filterBy;
         },
+        loadNotes() {
+            storageService
+                .query("notesApp")
+                .then((notes) => (this.notes = notes));
+        },
         addNote({ note, data }) {
-            // console.log("methods: addNote(note, data)", note, "\n data", data,"\n notes",this.notes);
             noteService.saveNote(note, data);
-            
+            this.loadNotes();
         },
     },
 
     created() {
-        noteService.query().then((notes) => (this.notes = notes));
+        storageService.query("notesApp").then((notes) => (this.notes = notes));
+        console.log("noteService.query()", noteService.query());
+        console.log("storageService.query()", storageService.query("notesApp"));
+
         // even bus emits
-        // eventBus.emit('appChange',notes)
-        //event bus listeners 
+       
+               //event bus listeners
         eventBus.on("evNoteAdd", ({ note, data }) =>
             this.addNote({ note, data })
         );
@@ -69,5 +79,3 @@ export default {
         },
     },
 };
-
-

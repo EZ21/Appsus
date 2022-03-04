@@ -6,7 +6,7 @@ export default {
     template: `
     
     <input autocomplete="off" v-model="userData"
-	    @keyup.enter="addNote( this.newNote, this.userData)" ref="newNoteEl"/>
+	    @keyup.enter="addNote( this.newNote, this.userData)" ref="newNoteElement"/>
 
         <div class="note-add-icons">
             <template v-for="(noteType, idx) in noteTypes">
@@ -34,7 +34,15 @@ export default {
 
     // },
     computed: {},
+
     methods: {
+        create() {
+            const fullName = `${this.last}, ${this.first}`;
+            if (!this.names.includes(fullName)) {
+                this.names.push(fullName);
+                this.first = this.last = "";
+            }
+        },
         addNote(newNote, userData) {
             console.log(
                 "1==== ADD NOTE: newNote",
@@ -44,8 +52,9 @@ export default {
             );
             // eventBus.$emit('evNoteAdd', this.userData)
             // eventBus.emit("evNoteAdd", this.newNote, this.userData);
-            eventBus.emit("evNoteAdd", { note:newNote, data:userData });
 
+            eventBus.emit("evNoteAdd", { note: newNote, data: userData });
+            // this.$emit("noteAddUpdate", );
             // eventBus.emit("evNoteAdd", this.userData);
             this.newNote = notesService.emptyNote();
             this.userData = "";
