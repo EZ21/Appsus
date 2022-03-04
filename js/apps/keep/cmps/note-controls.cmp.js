@@ -4,12 +4,23 @@ export default {
     props: ["note", "noteTypesInfo"],
     template: `
 		<div class="note-item-actions flex space-between">
-    <button title="Delete note" @click="removeNote(note.id)" >Delate</button>
-    <button>color</button>
-    <button>pin</button>
-    <button>Edit</button>
-    <button>clone</button>
-    <button>send email</button>
+    <i class="fas fa-trash-alt danger" title="Delete note" @click="removeNote(note.id)" ></i>
+    <!-- <button>color</button> -->
+    <i class="fas fa-palette info colors dropdown" title="Change note color">
+				<div class="dropdown-content">
+					<template v-for="color in availableColors">
+						<span :style="{'background-color': color.value}"
+							:class="getBgColorClass(color.value)"
+							@click="styleNote(color.value)"> &nbsp; </span>
+					</template>
+				</div>
+			</i>
+    <i class="fas fa-thumbtack"></i>
+    <span> &nbsp; </span>
+    <i class="fas fa-clone"></i>
+    <i class="fas fa-edit" ></i>
+    <!-- <button>send email</button> -->
+    <i class="fa-duotone fa-paper-plane"></i>
 
 			
 </div>
@@ -18,8 +29,19 @@ export default {
     methods: {
         removeNote(noteId) {
             //let noteId = "5";
-            console.log("In removeNote(noteId). noteId: ", noteId, "\n note: ", this.note);
+            console.log(
+                "In removeNote(noteId). noteId: ",
+                noteId,
+                "\n note: ",
+                this.note
+            );
             eventBus.emit("removeNote", noteId);
+        },
+        getBgColorClass(color) {
+            // return this.note.styles.backgroundColor === color ? "selected" : "";
+        },
+        styleNote(newBgColor) {
+            // eventBus.$emit(EVENT_NOTE_STYLED, this.note.id, newBgColor);
         },
     },
     data() {

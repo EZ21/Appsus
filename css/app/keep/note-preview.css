@@ -6,3 +6,14 @@
 .note-list {
     display: flex;
 }
+
+.dropdown:hover > .dropdown-content {
+	opacity: 1;
+	visibility: visible;
+}
+
+.dropdown .dropdown-content {
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+}
