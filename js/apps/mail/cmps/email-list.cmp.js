@@ -7,13 +7,13 @@ export default {
             <div v-for="email in emails" :key="email.id" :class="[email.isRead ? 'read' : '']" class="email-previews">
                 <!-- :email is v-bind:email -->
                 <!-- @click is v-on:click -->
-                <email-preview :email="email" @click.native="select(email)" @star="toggleMarkedWithStar" @read="toggleEmailRead" @remove="remove(email)" class="email-preview"></email-preview>
+                <email-preview :email="email" @click.native="select(email)" @star="toggleMarkedWithStar" @toggle="toggleEmailRead" @remove="deleteEmail(email)" class="email-preview"></email-preview>
             </div>
         </section>
     `,
 
   methods: {
-    remove(email) {
+    deleteEmail(email) {
       this.$emit("remove", email);
     },
 
@@ -26,7 +26,7 @@ export default {
     },
 
     toggleEmailRead(email) {
-      this.$emit("read", email);
+      this.$emit("toggle", email);
     },
   },
 

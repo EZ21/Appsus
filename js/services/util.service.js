@@ -1,17 +1,17 @@
 export const utilService = {
-  saveToStorage,
-  loadFromStorage,
+  // saveToStorage,
+  // loadFromStorage,
   makeId,
 };
 
-function saveToStorage(key, value) {
-  localStorage.setItem(key, JSON.stringify(value) || null);
-}
+// function saveToStorage(key, value) {
+//   localStorage.setItem(key, JSON.stringify(value) || null);
+// }
 
-function loadFromStorage(key) {
-  let data = localStorage.getItem(key);
-  return data ? JSON.parse(data) : undefined;
-}
+// function loadFromStorage(key) {
+//   let data = localStorage.getItem(key);
+//   return data ? JSON.parse(data) : undefined;
+// }
 
 function makeId(length = 8) {
   var txt = "";

@@ -51,16 +51,15 @@ export const emailService = {
   query,
   remove,
   save,
-  getById,
+  getEmailById,
   getEmailsByFolder,
   addEmail,
   toggleMarkReadEmail,
   setEmailAsRead,
   toggleStarIcon,
-  // removeEmailDraft,
-  // saveEmailDraft,
-  // getEmailDraftById,
-  // noteToEmailEntity,
+  removeEmailDraft,
+  saveEmailDraft,
+  getEmailDraftById,
 };
 
 _createEmails();
@@ -80,7 +79,7 @@ function _createEmails() {
   }
 }
 /*******************************************************************************/
-function getById(emailId) {
+function getEmailById(emailId) {
   return storageService.get(EMAIL_STORAGE_KEY, emailId);
 }
 
@@ -147,3 +146,18 @@ function getEmailsByFolder(folder) {
 }
 
 // EMAIL DRAFTS:
+function getEmailDraftById(draftId) {
+  return storageService.get(emailDraftsDB, draftId);
+}
+
+function removeEmailDraft(draftId) {
+  return storageService.remove(emailDraftsDB, draftId);
+}
+
+function saveEmailDraft(draft) {
+  if (draft.id) return storageService.put(emailDraftsDB, draft);
+  else {
+    draft.isDraft = true;
+    return storageService.post(emailDraftsDB, draft);
+  }
+}

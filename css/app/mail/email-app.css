@@ -1,5 +1,10 @@
 .email-preview {
     cursor: pointer;
+    border: 3px solid #f08080;
+}
+
+.email-preview .subject {
+    font-weight: bolder;
 }
 
 /* .side-bar {
@@ -26,10 +31,14 @@
 
 } */
 
-/* .email-btns {
+.email-btns {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
 
-} */
+}
 
 .star {
  color: #f08080;
+ /* fill: currentColor; */
 }

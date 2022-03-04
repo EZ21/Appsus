@@ -2,7 +2,9 @@ export default {
   template: `
         <section class="email-filter">
             <label for="">Search</label>
-            <input @input="setSearchBarFilter" v-model="filterBy.text" type="text" class="search-input" placeholder="Enter text here">
+            <input @input="setFilter" v-model="filterBy.text" type="text" class="search-input" placeholder="Enter text here">
+
+            <button class="menu-btn" @click="toggleMenuDisplay"><i class="fa-solid fa-bars"></i></button>
 
             <div class="sort-panel-container">
                 <label for="">Sort</label>
@@ -12,7 +14,7 @@ export default {
                 </select>
 
                 <label for="">Filter</label>
-                <select name="" id="" @change="filterReadUreadEmails" v-model="filterBy.read">
+                <select name="" id="" @change="setFilter" v-model="filterBy.read">
                     <option value="all" selected>All</option>
                     <option value="read">Read</option>
                     <option value="unread">Unread</option>
@@ -33,16 +35,16 @@ export default {
   },
 
   methods: {
-    setSearchBarFilter() {
-      this.$emit('filtered', { ...this.filterBy });
+    toggleMenuDisplay() {
+      this.$emit('toggled');
+    },
+
+    setFilter() {
+      this.$emit("filtered", { ...this.filterBy });
     },
 
     sortSubjectDate() {
-        this.$emit('sort', this.sort);
-    },
-
-    filterReadUreadEmails() {
-
+      this.$emit("sorted", this.sort);
     },
   },
 };
