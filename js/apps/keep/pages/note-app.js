@@ -55,17 +55,14 @@ export default {
         },
         removeNote(noteId) {
             // console.log(noteId);
-            noteService.removeNote(noteId).then(
-                () => this.loadNotes()
-            );
-            
+            noteService.removeNote(noteId).then(() => this.loadNotes());
+            this.loadNotes();
 
         },
     },
 
     created() {
-        if (this.notes.length <=
-            0) {
+        if (this.notes.length <= 0) {
             noteService.saveNotes();
             this.loadNotes();
         }

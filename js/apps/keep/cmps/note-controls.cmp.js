@@ -5,11 +5,11 @@ export default {
     template: `
 		<div class="note-item-actions flex space-between">
     <button title="Delete note" @click="removeNote(note.id)" >Delate</button>
-    <button>clone</button>
-    <button>send email</button>
-    <button>Edit</button>
     <button>color</button>
     <button>pin</button>
+    <button>Edit</button>
+    <button>clone</button>
+    <button>send email</button>
 
 			
 </div>
