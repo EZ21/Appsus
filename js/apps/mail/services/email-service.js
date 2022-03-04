@@ -63,8 +63,8 @@ export const emailService = {
 };
 
 _createEmails();
-utilService.loadFromStorage(EMAIL_DRAFTS_STORAGE_KEY) ||
-  utilService.saveToStorage(EMAIL_DRAFTS_STORAGE_KEY, []);
+storageService.query(EMAIL_DRAFTS_STORAGE_KEY) ||
+  storageService.saveAll(EMAIL_DRAFTS_STORAGE_KEY, []);
 
 function query() {
   return storageService.query(EMAIL_STORAGE_KEY);
@@ -72,10 +72,10 @@ function query() {
 
 // CREATE A DEMO EMAIL LIST:
 function _createEmails() {
-  let emails = utilService.loadFromStorage(EMAIL_STORAGE_KEY);
+  let emails = storageService.query(EMAIL_STORAGE_KEY);
   if (!emails || !emails.length) {
     emails = emailDemos;
-    utilService.saveToStorage(EMAIL_STORAGE_KEY, emails);
+    storageService.saveAll(EMAIL_STORAGE_KEY, emails);
   }
 }
 /*******************************************************************************/
