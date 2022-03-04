@@ -64,7 +64,7 @@ export const emailService = {
 
 _createEmails();
 storageService.query(EMAIL_DRAFTS_STORAGE_KEY) ||
-    utilService.saveToStorage(EMAIL_DRAFTS_STORAGE_KEY, []);
+  storageService.saveAll(EMAIL_DRAFTS_STORAGE_KEY, []);
 
 function query() {
     return storageService.query(EMAIL_STORAGE_KEY);
@@ -72,11 +72,11 @@ function query() {
 
 // CREATE A DEMO EMAIL LIST:
 function _createEmails() {
-    let emails = EMAIL_STORAGE_KEY;
-    if (!emails || !emails.length) {
-        emails = emailDemos;
-        storageService.saveAll(EMAIL_STORAGE_KEY, emails);
-    }
+  let emails = storageService.query(EMAIL_STORAGE_KEY);
+  if (!emails || !emails.length) {
+    emails = emailDemos;
+    storageService.saveAll(EMAIL_STORAGE_KEY, emails);
+  }
 }
 /*******************************************************************************/
 function getEmailById(emailId) {
