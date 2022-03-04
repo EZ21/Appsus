@@ -6,7 +6,7 @@ export default {
     template: `
     <section class="note-preview">
         <p><span>Note:</span> {{note.info.txt}}</p>
-        <note-controls></note-controls>
+        <note-controls :note="note" :noteTypesInfo="note"></note-controls>
     
 </section>
     `,

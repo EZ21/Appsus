@@ -54,19 +54,32 @@ export default {
             this.loadNotes();
         },
         removeNote(noteId) {
-            notesService.removeNote(noteId);
+            // console.log(noteId);
+            noteService.removeNote(noteId).then(
+                () => this.loadNotes()
+            );
+            
+
         },
     },
 
     created() {
+        if (this.notes.length <=
+            0) {
+            noteService.saveNotes();
+            this.loadNotes();
+        }
+
         // event bus emits
 
         //event bus listeners
         eventBus.on("evNoteAdd", ({ note, data }) =>
             this.addNote({ note, data })
         );
+        //
         eventBus.on("removeNote", (noteId) => this.removeNote(noteId));
-        this.loadNotes();
+        //
+        // this.loadNotes();
     },
     computed: {
         notesToShow() {
