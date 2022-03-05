@@ -14,13 +14,12 @@ export default {
     },
     computed: {
         pinnedNotesToShow() {
-            return
+            return;
             //
         },
         notesToShow() {
-            return 
+            return;
             //
         },
     },
 };
-

@@ -29,16 +29,3 @@ header {
     align-content: center;
     justify-content: space-around;
 }
-.note-list{
-display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-evenly;
-    align-items: center;
-}
-.add-note-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: whitesmoke;
-}

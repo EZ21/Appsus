@@ -1,11 +1,13 @@
 import { eventBus } from "../../../services/eventBus-service.js";
 
 export default {
-    props: ["note", "noteTypesInfo"],
+    props: ["note"],
     template: `
-		<div class="note-item-actions flex space-between">
+		<div class="note-controls ">
+            <!-- del note  -->
     <i class="fas fa-trash-alt danger" title="Delete note" @click="removeNote(note.id)" ></i>
     <!-- <button>color</button> -->
+    <!-- colors inpot -->
     <i class="fas fa-palette info colors dropdown" title="Change note color">
 				<div class="dropdown-content">
 					<template v-for="color in availableColors">
@@ -17,9 +19,11 @@ export default {
 			</i>
     <i class="fas fa-thumbtack"></i>
     <span> &nbsp; </span>
+    <!-- clone  -->
     <i class="fas fa-clone"></i>
-    <i class="fas fa-edit" ></i>
-    <!-- <button>send email</button> -->
+    <!-- update  -->
+    <i class="fas fa-edit" @click="updateNote(note.id)" title="Update note" :class="{marked: note.isUpdating}"></i>
+    
     <i class="fa-duotone fa-paper-plane"></i>
 
 			
@@ -37,6 +41,16 @@ export default {
             );
             eventBus.emit("removeNote", noteId);
         },
+        updateNote(noteId) {
+            console.log(
+                "updateNote(noteId). noteId: ",
+                noteId,
+                "\n note: ",
+                this.note
+            );
+            eventBus.emit("evNoteUpdateService", noteId);
+        },
+        
         getBgColorClass(color) {
             // return this.note.styles.backgroundColor === color ? "selected" : "";
         },

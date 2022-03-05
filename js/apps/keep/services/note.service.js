@@ -7,30 +7,35 @@ const notes = [
     {
         id: "n110",
         type: "txt",
+        isUpdating: false,
         isPinned: true,
         info: { txt: " 110 Fullstack Me Baby!" },
     },
     {
         id: "n111",
         type: "txt",
+        isUpdating: false,
         isPinned: true,
         info: { txt: "111 Fullstack Me Baby!" },
     },
     {
         id: "n112",
         type: "txt",
+        isUpdating: false,
         isPinned: true,
         info: { txt: "112 Fullstack Me Baby!" },
     },
     {
         id: "n120",
         type: "img",
+        isUpdating: false,
         info: { url: "http://some-img/me", title: "Bobi and Me" },
         style: { backgroundColor: "#00d" },
     },
     {
         id: "n130",
         type: "note-todos",
+        isUpdating: false,
         info: {
             label: "Get my stuff together",
             todos: [
@@ -100,6 +105,7 @@ function emptyNote() {
     return {
         id: "StartID",
         type: "txt",
+        isUpdating: false,
         isPinned: false,
         info: { txt: "starter note" },
         style: { backgroundColor: "" },
@@ -115,6 +121,13 @@ function removeNote(id) {
     });
 }
 
+function updateNote(id) {
+    return getNoteById(id).then((note) => {
+        note.isUpdating = !note.isUpdating;
+        saveNotes();
+    });
+}
+
 export default {
     emptyNote,
     query,
@@ -122,4 +135,5 @@ export default {
     saveNote,
     saveNotes,
     removeNote,
+    updateNote,
 };

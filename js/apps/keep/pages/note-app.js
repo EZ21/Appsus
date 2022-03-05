@@ -50,6 +50,7 @@ export default {
                 .then((notes) => (this.notes = notes));
         },
         addNote({ note, data }) {
+            console.log("addNote({ note, data })", { note, data });
             noteService.saveNote(note, data);
             this.loadNotes();
         },
@@ -57,7 +58,9 @@ export default {
             // console.log(noteId);
             noteService.removeNote(noteId).then(() => this.loadNotes());
             this.loadNotes();
-
+        },
+        updateNote(noteId) {
+            noteService.updateNote(noteId);
         },
     },
 
@@ -75,6 +78,13 @@ export default {
         );
         //
         eventBus.on("removeNote", (noteId) => this.removeNote(noteId));
+        eventBus.on("evNoteUpdateService", noteId => this.updateNote(noteId));
+        // eventBus.on(EVENT_NOTE_UPDATED, (note, data) =>
+        //     this.addNote(note, data)
+        // );
+
+        eventBus.on("evNoteUpdateDom", (note, data) =>
+            this.addNote(note, data));
         //
         // this.loadNotes();
     },
