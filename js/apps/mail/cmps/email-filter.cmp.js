@@ -8,13 +8,13 @@ export default {
 
             <div class="sort-panel-container">
                 <label for="">Sort</label>
-                <select name="" id="" @change="sortSubjectDate" v-model="sort">
+                <select @change="sortSubjectDate" v-model="sort">
                     <option value="subject" selected>Subject</option>
                     <option value="date">Date</option>
                 </select>
 
                 <label for="">Filter</label>
-                <select name="" id="" @change="setFilter" v-model="filterBy.read">
+                <select @change="setFilter" v-model="filterBy.read">
                     <option value="all" selected>All</option>
                     <option value="read">Read</option>
                     <option value="unread">Unread</option>

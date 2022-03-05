@@ -9,7 +9,6 @@ export default {
                 <h4>New Message</h4>
                 <input type="text" v-model="newEmail.to" placeholder="To:">
                 <input type="text" v-model="newEmail.cc" placeholder="Cc:">
-                <!-- <input type="text" placeholder="Bcc:"> -->
                 <input type="text" v-model="newEmail.subject" placeholder="Subject:">
                 <textarea v-model="newEmail.body" rows="10"></textarea>
                 <div class="compose-control-panel">
@@ -24,7 +23,6 @@ export default {
       newEmail: {
         to: "",
         cc: "",
-        // bcc: '',
         subject: "",
         body: "",
       },
@@ -63,7 +61,7 @@ export default {
       emailService.addEmail(this.newEmail).then((email) => {
         console.log("Email was sent");
         if (this.newEmail.isDraft) {
-          emailService.removeEmailDraft(email.id).then((email) => {
+          emailService.removeEmailDraft(email.id).then(() => {
             this.$emit("deleteEmailDraft");
             this.closeCompose();
           });
@@ -89,8 +87,6 @@ export default {
       this.$emit("closed");
     },
   },
-
-  //   mounted() {},
 
   unmounted() {
     clearInterval(this.saveComposedEmailInterval);

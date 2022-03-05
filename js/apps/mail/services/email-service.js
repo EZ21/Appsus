@@ -96,12 +96,9 @@ function addEmail(email) {
     isRead: false,
     isStar: false,
     sentAt: Date.now(),
-    to: email.to,
+    to: 'user@appsus.com',
   };
   console.log("new email added", sentEmail);
-  if (email.imageUrl) {
-    sentEmail.imageUrl = email.imageUrl;
-  }
   return storageService.post(EMAIL_STORAGE_KEY, sentEmail);
 }
 
@@ -128,21 +125,21 @@ function getEmailsByFolder(folder) {
   if (folder === "sent") {
     return query().then((emails) => {
       return emails.filter(
-        (email) => email.to === loggedinUser.email && !email.removedAt
+        (email) => email.to === loggedinUser.email && !email.deletedAt
       );
     });
   } else if (folder === "inbox")
     return query().then((emails) =>
       emails.filter(
-        (email) => email.to !== loggedinUser.email && !email.removedAt
+        (email) => email.to !== loggedinUser.email && !email.deletedAt
       )
     );
   else if (folder === "star")
     return query().then((emails) =>
-      emails.filter((email) => email.isStar && !email.removedAt)
+      emails.filter((email) => email.isStar && !email.deletedAt)
     );
   else if (folder === "trash")
-    return query().then((emails) => emails.filter((email) => email.removedAt));
+    return query().then((emails) => emails.filter((email) => email.deletedAt));
   else if (folder === "draft")
     return storageService.query(EMAIL_DRAFTS_STORAGE_KEY);
 }

@@ -13,11 +13,10 @@ export default {
 
             <span class="email-date">{{ emailDateFormat(email) }}</span>
 
-            <ul class="email-btns">
-              <!-- <li><span @click.stop="toggleMarkedWithStar(email)" :class="{star: isStar}"><i class="fa-solid fa-star"></i></span></li> -->
-              <li><span @click.stop="toggleEmailRead(email)"><i class="fa-solid fa-envelope" v-if="!email.isRead"></i><i class="fa-solid fa-envelope-open" v-if="email.isRead"></i></span></li><!-- unread mail -->
-              <li><span @click.stop="deleteEmail(email.id)"><i class="fa-solid fa-trash"></i></span></li><!-- delete mail -->
-            </ul>
+            <div class="email-btns">
+              <span class="email-btn" @click.stop="toggleEmailRead(email)"><i class="fa-solid fa-envelope" v-if="!email.isRead"></i><i class="fa-solid fa-envelope-open" v-if="email.isRead"></i></span><!-- unread mail -->
+              <span class="email-btn" @click.stop="deleteEmail(email.id)"><i class="fa-solid fa-trash"></i></span><!-- delete mail -->
+            </div>
         </section>
     `,
 
