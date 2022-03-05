@@ -4,7 +4,7 @@ import emailFilter from '../cmps/email-filter.cmp.js';
 import emailDetails from './email-details.cmp.js';
 import emailFolderList from '../cmps/email-folder-list.cmp.js';
 import emailCompose from '../cmps/email-compose.cmp.js';
-import { eventBus } from '../../../services/eventBus-service.js'
+// import { eventBus } from '../../../services/eventBus-service.js';
 
 export default {
   template: `
@@ -20,7 +20,7 @@ export default {
                 <aside class="side-bar">
                     <email-folder-list @hide="toggleDisplay" :isDisplayed="isDisplayed" @display="displayFolder" @compose="openComposeEmail"/>
 
-                    <p class="unread-emails">Unread Emails: {{ getUnreadCounter }}</p>
+                    <p class="unread-emails">Unread: {{ getUnreadCounter }}</p>
                 </aside>
             </div>
 
@@ -117,13 +117,13 @@ export default {
     selectEmail(email) {
       if (email.isDraft) {
         this.openComposeEmail();
-        setTimeout(() => {
-          eventBus.emit("emailDraft", email);
-        }, 1000); // save to draft every second
+        // setTimeout(() => {
+        //   eventBus.emit("emailDraft", email);
+        // }, 5000); // save to draft every 5 seconds
         return;
       }
       emailService.setEmailAsRead(email).then((this.emailSelected = email));
-      this.$router.push(`/email/${email.id}`);
+      this.$router.push('/email/' + email.id);
     },
 
     updateEmailsDraft() {

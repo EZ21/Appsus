@@ -1,3 +1,35 @@
+/* APP & LAYOUT*/
+.email-app {
+    height: 80vh;
+    width: 100vw;
+}
+
+.email-layout{
+    display: flex;
+}
+
+.email-container {}
+
+.side-bar {
+    margin-top: 1.25rem;
+}
+
+.unread-emails {}
+
+
+
+/* EMAIL FILTER */
+.email-filter {
+    display: flex;
+
+}
+
+/* EMAIL FOLDER LIST - NAV BAR */
+.folder-list-nav ul {
+    list-style-type: none;
+}
+
+/* EMAIL PREVIEW - EMAIL IN LIST */
 .email-preview {
     cursor: pointer;
     border: 3px solid #f08080;
@@ -9,27 +41,27 @@
 
 /* .side-bar {
 
-} */
+}; */
 
 /* .unread-emails {
 
-} */
+}; */
 
 /* .email-prev-to {
 
-} */
+}; */
 
 /* .subject {
 
-} */
+}; */
 
 /* .email-content {
 
-} */
+}; */
 
 /* .email-date {
 
-} */
+}; */
 
 .email-btns {
     list-style-type: none;
@@ -42,3 +74,32 @@
  color: #f08080;
  /* fill: currentColor; */
 }
+
+/* EMAIL DETAILS */
+
+
+/* COMPOSE NEW EMAIL */
+/* .compose-new-email {
+
+}; */
+
+/* .main-screen {
+
+}; */
+
+.compose-email-modal {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+/* .compose-control-panel {
+
+}; */
+
+/* .send-btn {
+
+}; */
+
+/* .delete-compose {
+
+}; */

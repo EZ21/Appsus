@@ -36,7 +36,7 @@ export default {
 
   methods: {
     toggleMenuDisplay() {
-      this.$emit('toggled');
+      this.$emit("toggled");
     },
 
     setFilter() {
