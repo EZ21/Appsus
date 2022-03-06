@@ -29,7 +29,10 @@ const notes = [
         id: "n120",
         type: "img",
         isUpdating: false,
-        info: { url: "http://some-img/me", title: "Bobi and Me" },
+        info: {
+            url: "https://cdn.pixabay.com/photo/2016/01/16/17/43/contact-us-1143659_960_720.jpg",
+            title: "Bobi and Me",
+        },
         style: { backgroundColor: "#00d" },
     },
     {
@@ -43,6 +46,20 @@ const notes = [
                 { txt: "Coding power", doneAt: 187111111, isDone: false },
             ],
         },
+    },
+    {
+        id: "n140",
+        type: "vid",
+        isUpdating: false,
+        info: {
+            url:
+                "//www.youtube.com/embed/" +
+                _youtube_parser(
+                    "https://www.youtube.com/watch?v=1yaegczSeGw&list=RD1yaegczSeGw&start_radio=1"
+                ),
+            title: "Bobi and Me",
+        },
+        style: { backgroundColor: "#00d" },
     },
 ];
 
@@ -71,11 +88,13 @@ function saveNote(note, data) {
             console.log("switch (note.type) =  txt");
             note.info.txt = data;
             break;
-        case "image":
-        case "video":
-        case "audio":
-            note.data.src = data;
-            break;
+        case "img":
+            note.info.url = data;
+        case "vid":
+            note.info.url = data;
+        // case "audio":
+        //     note.data.url = data;
+        //     break;
         case "todos":
             let todosArray = data.split(",");
             note.data.todos = todosArray.map((item) => {
@@ -130,12 +149,16 @@ function updateNoteOpenInput(id) {
 function updateTodosStatus(id, listIdx) {
     return getNoteById(id).then((note) => {
         // note.info.todos[listIdx].isDone = !note.info.todos[listIdx].isDone;
-        console.log("updateTodosStatus id :",id,"listIdx:",listIdx);
+        console.log("updateTodosStatus id :", id, "listIdx:", listIdx);
         // saveNotes();
-
     });
 }
-
+function _youtube_parser(url) {
+    var regExp =
+        /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    var match = url.match(regExp);
+    return match && match[7].length == 11 ? match[7] : false;
+}
 
 export default {
     emptyNote,

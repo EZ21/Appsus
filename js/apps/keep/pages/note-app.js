@@ -34,7 +34,15 @@ export default {
                 img: {
                     fieldType: "img",
                     icon: "🖼️",
-                    placeholder: "add Text Note ",
+                    // placeholder: "add Text Note ",
+                },
+                todos: {
+                    fieldType: "todos",
+                    icon: "📝",
+                },
+                vid: {
+                    fieldType: "vid",
+                    icon: "📝",
                 },
             },
             filterBy: null,
