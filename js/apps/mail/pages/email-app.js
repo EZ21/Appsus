@@ -4,15 +4,12 @@ import emailFilter from '../cmps/email-filter.cmp.js';
 import emailDetails from './email-details.cmp.js';
 import emailFolderList from '../cmps/email-folder-list.cmp.js';
 import emailCompose from '../cmps/email-compose.cmp.js';
-// import { eventBus } from '../../../services/eventBus-service.js';
 
 export default {
   template: `
         <section class="email-app">
             <div class="email-layout">
                 <div class="email-container">
-                <!-- :email is v-bind:email -->
-                <!-- @click is v-on:click -->
                     <email-filter @filtered="setFilter" @sorted="sortEmails" @toggle="toggleDisplay"/>
                     <email-list :emails="emailsForDisplay" @selected="selectEmail" @star="toggleMarkedWithStar" @toggle="toggleEmailRead" @remove="deleteEmail"/>
                 </div>
@@ -20,7 +17,7 @@ export default {
                 <aside class="side-bar">
                     <email-folder-list @hide="toggleDisplay" :isDisplayed="isDisplayed" @display="displayFolder" @compose="openComposeEmail"/>
 
-                    <p class="unread-emails">Unread: {{ getUnreadCounter }}</p>
+                    <p class="unread-emails">Unread: <span>{{ getUnreadCounter }}</span></p>
                 </aside>
             </div>
 
@@ -56,10 +53,10 @@ export default {
           (email1, email2) => email2.sentAt - email1.sentAt
         );
       } else {
-        return (this.emails.sort((email1, email2) => {
+        return this.emails.sort((email1, email2) => {
           email1.subject.toLowerCase() > email2.subject.toLowerCase() ? 1 : -1;
-        }));
-      };
+        });
+      }
     },
 
     displayFolder(folderName) {
@@ -97,11 +94,6 @@ export default {
         this.displayFolder(this.folder);
         console.log("Email deleted");
       });
-      // emailService.remove(id).then(()=>{
-      //   const idx = this.emails.findIndex((email) => email.id === id);
-      //   this.emails.splice(idx, 1);
-      // })
-      // .catch((err) => console.error(err));
     },
 
     openComposeEmail() {
@@ -117,18 +109,15 @@ export default {
     selectEmail(email) {
       if (email.isDraft) {
         this.openComposeEmail();
-        // setTimeout(() => {
-        //   eventBus.emit("emailDraft", email);
-        // }, 5000); // save to draft every 5 seconds
         return;
       }
       emailService.setEmailAsRead(email).then((this.emailSelected = email));
-      this.$router.push('/email/' + email.id);
+      this.$router.push("/email/" + email.id);
     },
 
     updateEmailsDraft() {
       this.displayFolder(this.folder);
-    }
+    },
   },
 
   computed: {
@@ -142,47 +131,20 @@ export default {
       return counter;
     },
 
-    
     emailsForDisplay() {
       if (!this.filterBy) return this.emails;
       const searchInput = this.filterBy.text.toLowerCase();
-      if (!searchInput || "all" === this.filterBy.read) return this.emails;
+      if (!searchInput && "all" === this.filterBy.read) return this.emails;
 
       const isSearchRead = this.filterBy.read === "read" ? true : false;
       const displayedEmails = this.emails.filter((email) => {
-          return (
-            isSearchRead === email.isRead &&
-            email.subject.toLowerCase().includes(searchInput)
-          );
-      });
-      return displayedEmails;
-    }
-    
-
-    /*
-    emailsForDisplay() {
-      if (!this.filterBy) return this.emails;
-      const searchInput = this.filterBy.text.toLowerCase();
-      if (!searchInput || "all" === this.filterBy.read) return this.emails;
-
-      const isSearchRead = this.filterBy.read === "read" ? true : false;
-      // const displayedEmails = this.emails.filter((email) => {
-      //     return ((isSearchRead === email.isRead) && (email.subject));
-      // })
-
-      const displayedEmails = this.emails.filter((email) => {
-        const searchWord = this.filterBy.text.toLowerCase();
-        const emailSubject = email.subject.toLowerCase();
-        const emailBody = email.body.toLowerCase();
-
         return (
           isSearchRead === email.isRead &&
-          (emailSubject.includes(searchWord) || emailBody.includes(searchWord))
+          email.subject.toLowerCase().includes(searchInput)
         );
       });
       return displayedEmails;
     },
-    */
   },
 
   components: {

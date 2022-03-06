@@ -5,8 +5,6 @@ export default {
   template: `
         <section class="email-list">
             <div v-for="email in emails" :key="email.id" :class="[email.isRead ? 'read' : '']" class="email-previews">
-                <!-- :email is v-bind:email -->
-                <!-- @click is v-on:click -->
                 <email-preview :email="email" @click.native="select(email)" @star="toggleMarkedWithStar" @toggle="toggleEmailRead" @remove="deleteEmail(email)" class="email-preview"></email-preview>
             </div>
         </section>
