@@ -22,7 +22,7 @@ export default {
     <!-- clone  -->
     <i class="fas fa-clone"></i>
     <!-- update  -->
-    <i class="fas fa-edit" @click="updateNote(note.id)" title="Update note" :class="{marked: note.isUpdating}"></i>
+    <i class="fas fa-edit" @click="updateNoteOpenInput(note.id)" title="Update note" :class="{marked: note.isUpdating}"></i>
     
     <i class="fa-duotone fa-paper-plane"></i>
 
@@ -41,16 +41,16 @@ export default {
             );
             eventBus.emit("removeNote", noteId);
         },
-        updateNote(noteId) {
+        updateNoteOpenInput(noteId) {
             console.log(
                 "updateNote(noteId). noteId: ",
                 noteId,
                 "\n note: ",
                 this.note
             );
-            eventBus.emit("evNoteUpdateService", noteId);
+            eventBus.emit("evNoteUpdateOpenInput", noteId);
         },
-        
+
         getBgColorClass(color) {
             // return this.note.styles.backgroundColor === color ? "selected" : "";
         },

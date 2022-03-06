@@ -8,6 +8,7 @@ export default {
       <note-preview v-for="note in notesToShow" :key="note.id" :note="note">
                 </note-preview>
             </div>
+            
 </section>
 
 `,
@@ -20,6 +21,7 @@ export default {
     },
     computed: {
         notesToShow() {
+            
             return this.notes;
         },
     },

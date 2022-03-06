@@ -34,13 +34,13 @@ const notes = [
     },
     {
         id: "n130",
-        type: "note-todos",
+        type: "todos",
         isUpdating: false,
         info: {
             label: "Get my stuff together",
             todos: [
-                { txt: "Driving liscence", doneAt: null },
-                { txt: "Coding power", doneAt: 187111111 },
+                { txt: "Driving liscence", doneAt: null, isDone: false },
+                { txt: "Coding power", doneAt: 187111111, isDone: false },
             ],
         },
     },
@@ -76,9 +76,9 @@ function saveNote(note, data) {
         case "audio":
             note.data.src = data;
             break;
-        case "list":
-            let listArr = data.split(",");
-            note.data.list = listArr.map((item) => {
+        case "todos":
+            let todosArray = data.split(",");
+            note.data.todos = todosArray.map((item) => {
                 return { text: item, completed: false };
             });
             break;
@@ -121,12 +121,21 @@ function removeNote(id) {
     });
 }
 
-function updateNote(id) {
+function updateNoteOpenInput(id) {
     return getNoteById(id).then((note) => {
         note.isUpdating = !note.isUpdating;
         saveNotes();
     });
 }
+function updateTodosStatus(id, listIdx) {
+    return getNoteById(id).then((note) => {
+        // note.info.todos[listIdx].isDone = !note.info.todos[listIdx].isDone;
+        console.log("updateTodosStatus id :",id,"listIdx:",listIdx);
+        // saveNotes();
+
+    });
+}
+
 
 export default {
     emptyNote,
@@ -135,5 +144,7 @@ export default {
     saveNote,
     saveNotes,
     removeNote,
-    updateNote,
+    updateNoteOpenInput,
+    STORAGE_KEY,
+    updateTodosStatus,
 };

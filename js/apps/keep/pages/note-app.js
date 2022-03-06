@@ -1,6 +1,7 @@
 import noteService from "../services/note.service.js";
 import noteList from "../cmps/note-list.cmp.js";
 import noteAdd from "../cmps/crud/note-add.cmp.js";
+
 import { storageService } from "../../../services/storage.service.js";
 
 import { eventBus } from "../../../services/eventBus-service.js";
@@ -44,9 +45,10 @@ export default {
         setFilter(filterBy) {
             this.filterBy = filterBy;
         },
+        //STORAGE_KEY
         loadNotes() {
             storageService
-                .query("notesApp")
+                .query(noteService.STORAGE_KEY)
                 .then((notes) => (this.notes = notes));
         },
         addNote({ note, data }) {
@@ -59,8 +61,15 @@ export default {
             noteService.removeNote(noteId).then(() => this.loadNotes());
             this.loadNotes();
         },
-        updateNote(noteId) {
-            noteService.updateNote(noteId);
+        updateNoteOpenInput(noteId) {
+            noteService.updateNoteOpenInput(noteId);
+            this.loadNotes();
+        },
+        updateTodosStatus({noteId, listIdx}) {
+            console.log("app updateTodosStatus", noteId, listIdx);
+            noteService.updateTodosStatus(noteId, listIdx);
+            // this.loadNotes();
+
         },
     },
 
@@ -78,9 +87,16 @@ export default {
         );
         //
         eventBus.on("removeNote", (noteId) => this.removeNote(noteId));
-        eventBus.on("evNoteUpdateService", noteId => this.updateNote(noteId));
-                eventBus.on("evNoteUpdateDom", (note, data) =>
-            this.addNote(note, data));
+        eventBus.on("evNoteUpdateOpenInput", (noteId) =>
+            this.updateNoteOpenInput(noteId)
+        );
+        eventBus.on("evNoteUpdateDom", (note, data) =>
+            this.addNote(note, data)
+        );
+        eventBus.on("evTodosStatus", ({ noteId, listIdx }) =>
+            this.updateTodosStatus({ noteId, listIdx })
+        );
+
         //
         // this.loadNotes();
     },

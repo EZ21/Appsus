@@ -14,7 +14,6 @@ export default {
         };
     },
     created() {
-        console.log("note update  this.note", this.note);
         this.newData = this.getNoteData();
     },
     methods: {
@@ -28,7 +27,7 @@ export default {
             return strValue;
         },
         saveUpdate(newNote, userData) {
-            eventBus.emit("evNoteUpdateService", this.note.id);
+            eventBus.emit("evNoteUpdateOpenInput", this.note.id);
             eventBus.emit("evNoteUpdateDom", {
                 note: newNote,
                 data: userData,
